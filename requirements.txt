@@ -4,4 +4,4 @@ networkx
 matplotlib
 pandas
 numpy
-sklearn
+scikit-learn
