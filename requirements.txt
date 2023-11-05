@@ -1,2 +1,7 @@
 flask
 flask_cors
+networkx
+matplotlib
+pandas
+numpy
+math
