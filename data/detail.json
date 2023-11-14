@@ -1,19 +1,14 @@
 {
-    "page": "3",
-    "results": [
-        {
             "show_id": "81145628",
             "type": "Movie",
             "title": "Norm of the North: King Sized Adventure",
             "director": "Richard Finn, Tim Maltby",
             "cast": "Alan Marriott, Andrew Toth, Brian Dobson, Cole Howard, Jennifer Cameron, Jonathan Holmes, Lee Tockar, Lisa Durupt, Maya Kay, Michael Dobson",
             "country": "United States, India, South Korea, China",
-            "date_added": "9-09-19",
+            "date_added": "1972-03-14",
             "release_year": "2019",
             "rating": "TV-PG", 
-            "duration": "90 min",
+            "duration": 123,
             "listed_in": "Children & Family Movies, Comedies",
             "description": "Before planning an awesome wedding for his grandfather, a polar bear king must take back a stolen artifact from an evil archaeologist first."
-        }
-    ]
 }

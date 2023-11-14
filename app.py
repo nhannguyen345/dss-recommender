@@ -15,7 +15,7 @@ def get_json_data():
     # Trả về nội dung JSON trong phản hồi
     return data, 200, {'Content-Type': 'application/json'}
 
-@app.route("/2")
+@app.route("/1")
 def get_json_data_page_1():
     # Đọc nội dung từ tệp JSON
     with open('./data/get10movie.json', 'r') as json_file:
