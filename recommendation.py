@@ -54,6 +54,7 @@ def find_similar(tfidf_matrix, index, top_n = 5):
     related_docs_indices = [i for i in cosine_similarities.argsort()[::-1] if i != index]
     return [index for index in related_docs_indices][0:top_n]  
 
+
 def get_recommendation(root):
     commons_dict = {}
     for e in G.neighbors(root):
@@ -105,5 +106,63 @@ for i, rowi in df.iterrows():
     G.add_edge(rowi['title'], snode, label="SIMILARITY")
     for element in indices:
         G.add_edge(snode, df['title'].loc[element], label="SIMILARITY")
+
+
+
+def get_title_by_show_id(show_id):
+    # Tìm dòng trong DataFrame có show_id tương ứng
+    movie_row = df[df['show_id'] == show_id]
+
+    # Kiểm tra xem có tồn tại dòng nào hay không
+    if not movie_row.empty:
+        # Lấy giá trị title từ dòng tìm được
+        title = movie_row['title'].values[0]
+        return title
+    else:
+        return "Không tìm thấy bộ phim với show_id này."
+    
+
+def get_full_id_by_title(title):
+    # Tìm dòng trong DataFrame có show_id tương ứng
+    movie_row = df[df['title'] == title]
+
+    # Kiểm tra xem có tồn tại dòng nào hay không
+    if not movie_row.empty:
+        # Lấy giá trị title từ dòng tìm được
+        id = movie_row['show_id'].values[0]
+        return id
+    else:
+        return "Không tìm thấy bộ phim với show_id này."
+    
+
+
+def titleToFullInfo(title):
+    # Kiểm tra xem tiêu đề có trong DataFrame không
+    row = df[df['title'] == title]
+
+    if not row.empty:
+        # Chuyển đổi dữ liệu thành định dạng mong muốn
+        result = {
+            "show_id": row['show_id'].values[0],
+            "type": row['type'].values[0],
+            "title": row['title'].values[0],
+            "director": row['director'].values[0],
+            "cast": row['cast'].values[0],
+            "country": row['country'].values[0],
+            "date_added": row['date_added'].values[0],
+            "release_year": int(row['release_year'].values[0]),
+            "rating": row['rating'].values[0],
+            "duration": row['duration'].values[0],
+            "listed_in": row['listed_in'].values[0],
+            "description": row['description'].values[0],
+            "backdrop_path": "",  # Bạn có thể cung cấp đường dẫn nếu có
+            "poster_path": "",  # Bạn có thể cung cấp đường dẫn nếu có
+        }
+        return result
+    else:
+        return None
+
+
+
 
 
