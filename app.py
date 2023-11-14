@@ -1,33 +1,49 @@
-from flask import Flask, jsonify, send_file
-from flask_cors import CORS
 import json
-import getdata
+from flask import Flask, jsonify, send_file,request
+
+from flask_cors import CORS
+import numpy as np
+import pandas as pd
+import recommendation
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route("/")
-def get_json_data():
-    # Đọc nội dung từ tệp JSON
-    with open('./data/fixed_data.json', 'r') as json_file:
-        data = json_file.read()
-    
-    # Trả về nội dung JSON trong phản hồi
+def RenderHomePage():
+    return 'Home Page', 200, {'Content-Type': 'application/json'}
+
+
+@app.route('/api/netflix', methods=['GET'])
+def get_netflix_data():
+    # Lấy tham số từ URL
+    page = request.args.get('page')
+
+    # Kiểm tra xem tham số 'page' có tồn tại hay không
+    if page is not None:
+        # Nếu có tham số 'page', mở tệp dữ liệu tương ứng
+        page_data_path = f'./data/dataPage{page}.json'
+        try:
+            with open(page_data_path, 'r') as json_file:
+                data = json_file.read()
+            return data, 200, {'Content-Type': 'application/json'}
+        except FileNotFoundError:
+            # Trường hợp tệp không tồn tại
+            return jsonify({"error": "Page not found"}), 404
+    else:
+        # Nếu không có tham số 'page', trả về thông báo
+        return 'full data will update soon', 200, {'Content-Type': 'text/plain'}
+
+
+
+####
+@app.route("/<id>/recommendations")
+def get_recommend(id):
+    data = recommendation.get_recommendation(recommendation.get_title_by_show_id(int(id)))
     return data, 200, {'Content-Type': 'application/json'}
 
-@app.route("/1")
-def get_json_data_page_1():
-    # Đọc nội dung từ tệp JSON
-    with open('./data/get10movie.json', 'r') as json_file:
-        data = json_file.read()
-    
-    # Trả về nội dung JSON trong phản hồi
-    return data, 200, {'Content-Type': 'application/json'}
 
-@app.route("/movie/<name>")
-def get_recommend(name):
-    data = getdata.get_recommendation(name)
-    return data, 200, {'Content-Type': 'application/json'}
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    app.run(host="0.0.0.0", port=9000)
