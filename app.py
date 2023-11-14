@@ -18,7 +18,7 @@ def get_json_data():
 @app.route("/1")
 def get_json_data_page_1():
     # Đọc nội dung từ tệp JSON
-    with open('./data/detail.json', 'r') as json_file:
+    with open('./data/get10movie.json', 'r') as json_file:
         data = json_file.read()
     
     # Trả về nội dung JSON trong phản hồi
@@ -27,6 +27,15 @@ def get_json_data_page_1():
 @app.route("/movie/<name>")
 def get_recommend(name):
     data = getdata.get_recommendation(name)
+    return data, 200, {'Content-Type': 'application/json'}
+
+@app.route("/81145628")
+def get_json_data_page_2():
+    # Đọc nội dung từ tệp JSON
+    with open('./data/detail.json', 'r') as json_file:
+        data = json_file.read()
+    
+    # Trả về nội dung JSON trong phản hồi
     return data, 200, {'Content-Type': 'application/json'}
 
 
