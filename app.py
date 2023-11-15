@@ -26,8 +26,8 @@ def get_netflix_data():
         try:
             with open(page_data_path, 'r') as json_file:
                 data = json_file.read()
-            # return data, 200, {'Content-Type': 'application/json'}
-            return data
+            return data, 200, {'Content-Type': 'application/json'}
+   
         except FileNotFoundError:
             # Trường hợp tệp không tồn tại
             return jsonify({"error": "Page not found"}), 404
@@ -43,7 +43,7 @@ def get_netflix_data():
 def get_recommend(id):
     try:
         data = recommendation.get_recommendation(recommendation.get_title_by_show_id(int(id)))
-        return recommendation.convert_to_desired_format(data)
+        return jsonify(recommendation.convert_to_desired_format(data))
     except Exception as e:
         return jsonify({"error": str(e)})
 # @app.route("/<id>/recommendations")

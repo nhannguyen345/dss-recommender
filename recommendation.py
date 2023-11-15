@@ -56,31 +56,64 @@ def find_similar(tfidf_matrix, index, top_n = 5):
     return [index for index in related_docs_indices][0:top_n]  
 
 
+# def get_recommendation(root):
+#     commons_dict = {}
+#     for e in G.neighbors(root):
+#         for e2 in G.neighbors(e):
+#             if e2==root:
+#                 continue
+#             if G.nodes[e2]['label']=="MOVIE":
+#                 commons = commons_dict.get(e2)
+#                 if commons==None:
+#                     commons_dict.update({e2 : [e]})
+#                 else:
+#                     commons.append(e)
+#                     commons_dict.update({e2 : commons})
+#     movies=[]
+#     weight=[]
+#     for key, values in commons_dict.items():
+#         w=0.0
+#         for e in values:
+#             w=w+1/math.log(G.degree(e))
+#         movies.append(key) 
+#         weight.append(w)
+    
+#     result = pd.Series(data=np.array(weight),index=movies)
+#     result.sort_values(inplace=True,ascending=False)        
+#     return json.dumps(result.to_dict())
+
 def get_recommendation(root):
     commons_dict = {}
     for e in G.neighbors(root):
         for e2 in G.neighbors(e):
-            if e2==root:
+            if e2 == root:
                 continue
-            if G.nodes[e2]['label']=="MOVIE":
+            if G.nodes[e2]['label'] == "MOVIE":
                 commons = commons_dict.get(e2)
-                if commons==None:
-                    commons_dict.update({e2 : [e]})
+                if commons is None:
+                    commons_dict.update({e2: [e]})
                 else:
                     commons.append(e)
-                    commons_dict.update({e2 : commons})
-    movies=[]
-    weight=[]
+                    commons_dict.update({e2: commons})
+
+    movies = []
+    weight = []
     for key, values in commons_dict.items():
-        w=0.0
+        w = 0.0
         for e in values:
-            w=w+1/math.log(G.degree(e))
-        movies.append(key) 
+            w = w + 1 / math.log(G.degree(e))
+        movies.append(key)
         weight.append(w)
-    
-    result = pd.Series(data=np.array(weight),index=movies)
-    result.sort_values(inplace=True,ascending=False)        
-    return json.dumps(result.to_dict())
+
+    result = pd.Series(data=np.array(weight), index=movies)
+    result.sort_values(inplace=True, ascending=False)
+
+    # Chỉ lấy 10 kết quả đầu tiên
+    top_10_results = result.head(10)
+
+    return json.dumps(top_10_results.to_dict())
+
+
 
 G = nx.Graph(label="MOVIE")
 start_time = time.time()
@@ -141,6 +174,7 @@ def titleToFullInfo(title):
     # Kiểm tra xem tiêu đề có trong DataFrame không
     row = df[df['title'] == title]
 
+
     if not row.empty:
         # Chuyển đổi dữ liệu thành định dạng mong muốn
         result = {
@@ -148,14 +182,14 @@ def titleToFullInfo(title):
             "type": row['type'].values[0],
             "title": row['title'].values[0],
             "director": row['director'].values[0],
-            "cast": row['cast'].values[0],
+            "cast": row['cast'].values[0].encode('ascii', 'ignore').decode('ascii'),
             "country": row['country'].values[0],
             "date_added": row['date_added'].values[0],
             "release_year": int(row['release_year'].values[0]),
             "rating": row['rating'].values[0],
             "duration": row['duration'].values[0],
             "listed_in": row['listed_in'].values[0],
-            "description": row['description'].values[0],
+            "description": row['description'].values[0].encode('ascii', 'ignore').decode('ascii'),
             "backdrop_path": "",  # Bạn có thể cung cấp đường dẫn nếu có
             "poster_path": "",  # Bạn có thể cung cấp đường dẫn nếu có
         }
@@ -183,8 +217,8 @@ def convert_to_desired_format(input):
             results.append(movie_info)
 
     # Tạo đối tượng kết quả cuối cùng
-    final_result = {"results": results}
-    return jsonify(final_result)
+    final_result = {"page":1,"results": results}
+    return final_result
 
     # json_result = json.dumps(final_result)
     # return json_result
