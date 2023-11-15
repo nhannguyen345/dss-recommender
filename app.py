@@ -1,9 +1,8 @@
-import json
-from flask import Flask, jsonify, send_file,request
+
+from flask import Flask, jsonify,request
 
 from flask_cors import CORS
-import numpy as np
-import pandas as pd
+
 import recommendation
 
 app = Flask(__name__)
@@ -37,24 +36,13 @@ def get_netflix_data():
 
 
 
-####
-
-@app.route("/<id>/recommendations")
+@app.route("/api/<id>/recommendations")
 def get_recommend(id):
     try:
         data = recommendation.get_recommendation(recommendation.get_title_by_show_id(int(id)))
         return jsonify(recommendation.convert_to_desired_format(data))
     except Exception as e:
         return jsonify({"error": str(e)})
-# @app.route("/<id>/recommendations")
-# def get_recommend(id):
-#     try:
-#         data = recommendation.titleToFullInfo('Norm of the North: King Sized Adventure')
-#         return jsonify(data)
-#     except Exception as e:
-#         return jsonify({"error": str(e)})
-
-
 
 
 

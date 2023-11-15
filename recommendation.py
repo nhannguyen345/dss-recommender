@@ -55,66 +55,6 @@ def find_similar(tfidf_matrix, index, top_n = 5):
     related_docs_indices = [i for i in cosine_similarities.argsort()[::-1] if i != index]
     return [index for index in related_docs_indices][0:top_n]  
 
-
-# def get_recommendation(root):
-#     commons_dict = {}
-#     for e in G.neighbors(root):
-#         for e2 in G.neighbors(e):
-#             if e2==root:
-#                 continue
-#             if G.nodes[e2]['label']=="MOVIE":
-#                 commons = commons_dict.get(e2)
-#                 if commons==None:
-#                     commons_dict.update({e2 : [e]})
-#                 else:
-#                     commons.append(e)
-#                     commons_dict.update({e2 : commons})
-#     movies=[]
-#     weight=[]
-#     for key, values in commons_dict.items():
-#         w=0.0
-#         for e in values:
-#             w=w+1/math.log(G.degree(e))
-#         movies.append(key) 
-#         weight.append(w)
-    
-#     result = pd.Series(data=np.array(weight),index=movies)
-#     result.sort_values(inplace=True,ascending=False)        
-#     return json.dumps(result.to_dict())
-
-def get_recommendation(root):
-    commons_dict = {}
-    for e in G.neighbors(root):
-        for e2 in G.neighbors(e):
-            if e2 == root:
-                continue
-            if G.nodes[e2]['label'] == "MOVIE":
-                commons = commons_dict.get(e2)
-                if commons is None:
-                    commons_dict.update({e2: [e]})
-                else:
-                    commons.append(e)
-                    commons_dict.update({e2: commons})
-
-    movies = []
-    weight = []
-    for key, values in commons_dict.items():
-        w = 0.0
-        for e in values:
-            w = w + 1 / math.log(G.degree(e))
-        movies.append(key)
-        weight.append(w)
-
-    result = pd.Series(data=np.array(weight), index=movies)
-    result.sort_values(inplace=True, ascending=False)
-
-    # Chỉ lấy 10 kết quả đầu tiên
-    top_10_results = result.head(10)
-
-    return json.dumps(top_10_results.to_dict())
-
-
-
 G = nx.Graph(label="MOVIE")
 start_time = time.time()
 for i, rowi in df.iterrows():       
@@ -142,6 +82,40 @@ for i, rowi in df.iterrows():
         G.add_edge(snode, df['title'].loc[element], label="SIMILARITY")
 
 
+def get_recommendation(root):
+    commons_dict = {}
+    for e in G.neighbors(root):
+        for e2 in G.neighbors(e):
+            if e2 == root:
+                continue
+            if G.nodes[e2]['label'] == "MOVIE":
+                commons = commons_dict.get(e2)
+                if commons is None:
+                    commons_dict.update({e2: [e]})
+                else:
+                    commons.append(e)
+                    commons_dict.update({e2: commons})
+
+    movies = []
+    weight = []
+    for key, values in commons_dict.items():
+        w = 0.0
+        for e in values:
+            w = w + 1 / math.log(G.degree(e))
+        movies.append(key)
+        weight.append(w)
+
+    result = pd.Series(data=np.array(weight), index=movies)
+    result.sort_values(inplace=True, ascending=False)
+
+    # Chỉ lấy 10 kết quả có trọng số cao nhất bỏ qua kết quả đầu tiên vì nó là bộ phim được chọn
+    top_10_results = result.iloc[1:11]
+
+    return json.dumps(top_10_results.to_dict())
+
+
+
+
 
 def get_title_by_show_id(show_id):
     # Tìm dòng trong DataFrame có show_id tương ứng
@@ -155,7 +129,6 @@ def get_title_by_show_id(show_id):
     else:
         return "Không tìm thấy bộ phim với show_id này."
     
-
 
 def titleToFullInfo(title):
     # Kiểm tra xem tiêu đề có trong DataFrame không
@@ -176,9 +149,7 @@ def titleToFullInfo(title):
             "rating": row['rating'].values[0] if not pd.isna(row['rating'].values[0]) else "",
             "duration": row['duration'].values[0] if not pd.isna(row['duration'].values[0]) else "",
             "listed_in": row['listed_in'].values[0] if not pd.isna(row['listed_in'].values[0]) else "",
-            "description": row['description'].values[0].encode('ascii', 'ignore').decode('ascii') if not pd.isna(row['description'].values[0]) else "",
-            "backdrop_path": "",  # Bạn có thể cung cấp đường dẫn nếu có
-            "poster_path": "",  # Bạn có thể cung cấp đường dẫn nếu có
+            "description": row['description'].values[0].encode('ascii', 'ignore').decode('ascii') if not pd.isna(row['description'].values[0]) else ""
         }
         return result
     else:
@@ -199,7 +170,8 @@ def convert_to_desired_format(input):
         if movie_info is not None:
             # Thêm trường weight vào thông tin đầy đủ
             movie_info["weight"] = weight
-
+            movie_info["backdrop_path"]="https://nocodebuilding.com/wp-content/uploads/2021/07/xem-phim-titanic-thuyet-minh.jpg"
+            movie_info["poster_path"]="https://upload.wikimedia.org/wikipedia/vi/a/ab/Titanic_3D_poster_Vietnam.jpg"
             # Thêm vào danh sách kết quả
             results.append(movie_info)
 
@@ -207,8 +179,6 @@ def convert_to_desired_format(input):
     final_result = {"page":1,"results": results}
     return final_result
 
-    # json_result = json.dumps(final_result)
-    # return json_result
 
 
 

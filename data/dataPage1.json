@@ -10,10 +10,12 @@
             "country": "United States, India, South Korea, China",
             "date_added": "9-09-19",
             "release_year": "2019",
-            "rating": "TV-PG", 
-            "duration": "90 min",
+            "rating": "TV-PG",
+            "duration": 90,
             "listed_in": "Children & Family Movies, Comedies",
-            "description": "Before planning an awesome wedding for his grandfather, a polar bear king must take back a stolen artifact from an evil archaeologist first."
+            "description": "Before planning an awesome wedding for his grandfather, a polar bear king must take back a stolen artifact from an evil archaeologist first.",
+            "backdrop_path": "https://m.media-amazon.com/images/M/MV5BMWQyOGFhODQtZmY0Yy00NGEzLWE0NDUtNGI5MDIxZGY3MDgwXkEyXkFqcGdeQXVyODEwMTc2ODQ@._V1_.jpg",
+            "poster_path": "https://m.media-amazon.com/images/M/MV5BNjMwZDhhZWYtOTM0OC00ZTQzLWIyNDktNDM1NmVkYTY4NWNlXkEyXkFqcGdeQXVyNTYyNDUxMDc@._V1_.jpg"
         },
         {
             "show_id": "80117401",
@@ -25,9 +27,11 @@
             "date_added": "9-09-16",
             "release_year": "2016",
             "rating": "TV-MA",
-            "duration": "94 min",
+            "duration": 94,
             "listed_in": "Stand-Up Comedy",
-            "description": "Jandino Asporaat riffs on the challenges of raising kids and serenades the audience with a rousing rendition of \"Sex on Fire\" in his comedy show."
+            "description": "Jandino Asporaat riffs on the challenges of raising kids and serenades the audience with a rousing rendition of \"Sex on Fire\" in his comedy show.",
+            "backdrop_path": "https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABSg65zUTWsT7n5FZ7hu2CWFN4iakJD5-TcOB24DqtFaRK7VHOQfL6gpPIjCFLBc2OyNr3qy1vLqYxFRjzKB2Y5lmw0lEFkhT2eY8.jpg?r=7a0",
+            "poster_path": "https://www.themoviedb.org/t/p/w500/oY5h3FTICz2fhfvbgtJ4VG5o8r1.jpg"
         },
         {
             "show_id": "70234439",
@@ -39,9 +43,11 @@
             "date_added": "8-09-18",
             "release_year": "2013",
             "rating": "TV-Y7-FV",
-            "duration": "1 Season",
+            "duration": 125,
             "listed_in": "Kids' TV",
-            "description": "With the help of three human allies, the Autobots once again protect Earth from the onslaught of the Decepticons and their leader, Megatron."
+            "description": "With the help of three human allies, the Autobots once again protect Earth from the onslaught of the Decepticons and their leader, Megatron.",
+            "backdrop_path": "https://oyster.ignimgs.com/wordpress/stg.ign.com/2012/11/TransformersPrime_review_1600.jpg",
+            "poster_path": "https://statics.pancake.vn/web-media/23/e1/4b/08/e0e4983972b4bed82f2f3e8f48a070b0430901f9f2282970ca07f02f.jpg"
         },
         {
             "show_id": "80058654",
@@ -53,9 +59,11 @@
             "date_added": "8-09-18",
             "release_year": "2016",
             "rating": "TV-Y7",
-            "duration": "1 Season",
+            "duration": 129,
             "listed_in": "Kids' TV",
-            "description": "When a prison ship crash unleashes hundreds of Decepticons on Earth, Bumblebee leads a new Autobot force to protect humankind."
+            "description": "When a prison ship crash unleashes hundreds of Decepticons on Earth, Bumblebee leads a new Autobot force to protect humankind.",
+            "backdrop_path": "https://i.ytimg.com/vi/lAmf7OShLoQ/maxresdefault.jpg",
+            "poster_path": "https://m.media-amazon.com/images/M/MV5BNjk0NjY1YjItZjNlNC00ZGJhLTg1YzAtZWYzZDljOGUyN2IxXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg"
         },
         {
             "show_id": "80125979",
@@ -67,37 +75,43 @@
             "date_added": "8-09-17",
             "release_year": "2017",
             "rating": "TV-14",
-            "duration": "99 min",
+            "duration": 99,
             "listed_in": "Comedies",
-            "description": "When nerdy high schooler Dani finally attracts the interest of her longtime crush, she lands in the cross hairs of his ex, a social media celebrity."
+            "description": "When nerdy high schooler Dani finally attracts the interest of her longtime crush, she lands in the cross hairs of his ex, a social media celebrity.",
+            "backdrop_path": "https://occ-0-114-300.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABV2aBSCJBfFIh2dMu-RdCVDF9RNz9YxhcC5V_UM-dDm33bdhTzsGP4qJ-ULBh8SZGfnOZ8lP4dtIdjKoPW1ChjcPRwQpdeKoUinVjSnGNcNH5u9MHigzeabrnhc-RT6wTPl6_w.jpg?r=f51",
+            "poster_path": "https://m.media-amazon.com/images/M/MV5BNDU3Mzk0ODAtMzI0Ni00YTUzLWIyNDctMDE3OTE3OTk4OWE2XkEyXkFqcGdeQXVyNTM0MDc1ODE@._V1_.jpg"
         },
         {
             "show_id": "80163890",
             "type": "TV Show",
             "title": "Apaches",
             "director": "",
-            "cast": "Alberto Ammann, Eloy Azor\u00edn, Ver\u00f3nica Echegui, Luc\u00eda Jim\u00e9nez, Claudia Traisac",
+            "cast": "Alberto Ammann, Eloy Azor, Vernica Echegui, Luca Jimnez, Claudia Traisac",
             "country": "Spain",
             "date_added": "8-09-17",
             "release_year": "2016",
             "rating": "TV-MA",
-            "duration": "1 Season",
+            "duration": 121,
             "listed_in": "Crime TV Shows, International TV Shows, Spanish-Language TV Shows",
-            "description": "A young journalist is forced into a life of crime to save his father and family in this series based on the novel by Miguel S\u00e1ez Carral."
+            "description": "A young journalist is forced into a life of crime to save his father and family in this series based on the novel by Miguel S\u00e1ez Carral.",
+            "backdrop_path": "https://cdn.sortiraparis.com/images/80/77381/869409-apaches-le-nouveau-film-de-romain-quirot-avec-rod-paradot-le-teaser.jpg",
+            "poster_path": "https://m.media-amazon.com/images/M/MV5BYzRlMTJlYjMtZmNkOS00MmU5LTk0YWMtYjVkMjc5MmFhMzA2XkEyXkFqcGdeQXVyMTA1MDA4MTY0._V1_.jpg"
         },
         {
             "show_id": "70304989",
             "type": "Movie",
             "title": "Automata",
-            "director": "Gabe Ib\u00e1\u00f1ez",
-            "cast": "Antonio Banderas, Dylan McDermott, Melanie Griffith, Birgitte Hjort S\u00f8rensen, Robert Forster, Christa Campbell, Tim McInnerny, Andy Nyman, David Ryall",
+            "director": "Gabe Ibez",
+            "cast": "Antonio Banderas, Dylan McDermott, Melanie Griffith, Birgitte Hjort Srensen, Robert Forster, Christa Campbell, Tim McInnerny, Andy Nyman, David Ryall",
             "country": "Bulgaria, United States, Spain, Canada",
             "date_added": "8-09-17",
             "release_year": "2014",
             "rating": "R",
-            "duration": "110 min",
+            "duration": 110,
             "listed_in": "International Movies, Sci-Fi & Fantasy, Thrillers",
-            "description": "In a dystopian future, an insurance adjuster for a tech company investigates a robot killed for violating protocol and discovers a global conspiracy."
+            "description": "In a dystopian future, an insurance adjuster for a tech company investigates a robot killed for violating protocol and discovers a global conspiracy.",
+            "backdrop_path": "https://variety.com/wp-content/uploads/2014/09/automata-movie-review-san-sebastian-film-festival.jpg",
+            "poster_path": "https://m.media-amazon.com/images/M/MV5BNzgyMDcyMjMwMV5BMl5BanBnXkFtZTgwNjY5MTA1MjE@._V1_.jpg"
         },
         {
             "show_id": "80164077",
@@ -109,9 +123,11 @@
             "date_added": "8-09-17",
             "release_year": "2017",
             "rating": "TV-MA",
-            "duration": "60 min",
+            "duration": 60,
             "listed_in": "Stand-Up Comedy",
-            "description": "Fabrizio Copano takes audience participation to the next level in this stand-up set while reflecting on sperm banks, family WhatsApp groups and more."
+            "description": "Fabrizio Copano takes audience participation to the next level in this stand-up set while reflecting on sperm banks, family WhatsApp groups and more.",
+            "backdrop_path": "https://occ-0-56-64.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABYqUeo6KNrMryamBkXPYycarM6TxM8cLLAybwxDljqF0C6lKrlkctk3f-i2f73Yf34jhrIC55ktnUgmLzQ7vikRRj6xmDAtcVrNoIGemHvCkdlp7am1mBVR86XGEgnKAvInqYw.jpg?r=50f",
+            "poster_path": "https://m.media-amazon.com/images/M/MV5BZDgyNzNkMjktNmQ3ZS00MWQwLWE1ZmQtMzg1ZmQwYmM0ZjA5XkEyXkFqcGdeQXVyMzUzNzM3MTA@._V1_.jpg"
         },
         {
             "show_id": "80117902",
@@ -123,9 +139,11 @@
             "date_added": "8-09-17",
             "release_year": "2017",
             "rating": "TV-MA",
-            "duration": "1 Season",
+            "duration": 133,
             "listed_in": "Docuseries, Science & Nature TV",
-            "description": "As California's 2016 fire season rages, brave backcountry firefighters race to put out the flames, protect homes and save lives in this docuseries."
+            "description": "As California's 2016 fire season rages, brave backcountry firefighters race to put out the flames, protect homes and save lives in this docuseries.",
+            "backdrop_path": "https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABQ7MKXfSjyRLPYMcg9Xz_Y8i7th81tzuuh9WjSaXyRSQl0PJ_QPhWL33zWipSADv0dp61qL0yMawZOe0zYnVOeKYJs1WF4gYn0E3.jpg?r=a39",
+            "poster_path": "https://m.media-amazon.com/images/M/MV5BNmQwZWQ0OWYtMDEyOS00NjQ3LWEwY2YtNjZkOWVmOWJlY2YzXkEyXkFqcGdeQXVyMjY0OTI5NTM@._V1_.jpg"
         },
         {
             "show_id": "70304990",
@@ -137,9 +155,11 @@
             "date_added": "8-09-17",
             "release_year": "2014",
             "rating": "R",
-            "duration": "90 min",
+            "duration": 90,
             "listed_in": "Action & Adventure, Thrillers",
-            "description": "A struggling couple can't believe their luck when they find a stash of money in the apartment of a neighbor who was recently murdered."
+            "description": "A struggling couple can't believe their luck when they find a stash of money in the apartment of a neighbor who was recently murdered.",
+            "backdrop_path": "https://m.media-amazon.com/images/M/MV5BYmI4NTNhZDUtYjM2Ny00NTcxLTg0OWEtYmNhOGM3NjhlNjE1XkEyXkFqcGdeQXVyNTE4MzAyNDk@._V1_.jpg",
+            "poster_path": "https://m.media-amazon.com/images/M/MV5BMTQxOTk5ODc0Nl5BMl5BanBnXkFtZTgwNDA3MzExMjE@._V1_.jpg"
         }
     ]
 }
