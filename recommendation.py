@@ -1,4 +1,5 @@
 # import librairies
+from flask import jsonify
 import networkx as nx
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -143,7 +144,7 @@ def titleToFullInfo(title):
     if not row.empty:
         # Chuyển đổi dữ liệu thành định dạng mong muốn
         result = {
-            "show_id": row['show_id'].values[0],
+            "show_id": int(row['show_id'].values[0]),
             "type": row['type'].values[0],
             "title": row['title'].values[0],
             "director": row['director'].values[0],
@@ -161,6 +162,34 @@ def titleToFullInfo(title):
         return result
     else:
         return None
+
+    
+
+def convert_to_desired_format(input):
+    data = json.loads(input)
+    # Khởi tạo danh sách kết quả
+    results = []
+
+    # Lặp qua từng phần tử trong output
+    for movie, weight in data.items():
+        # Chuyển đổi thông tin từ data
+        movie_info = titleToFullInfo(movie)
+
+        if movie_info is not None:
+            # Thêm trường weight vào thông tin đầy đủ
+            movie_info["weight"] = weight
+
+            # Thêm vào danh sách kết quả
+            results.append(movie_info)
+
+    # Tạo đối tượng kết quả cuối cùng
+    final_result = {"results": results}
+    return jsonify(final_result)
+
+    # json_result = json.dumps(final_result)
+    # return json_result
+
+
 
 
 
