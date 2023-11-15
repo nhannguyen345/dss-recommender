@@ -156,19 +156,6 @@ def get_title_by_show_id(show_id):
         return "Không tìm thấy bộ phim với show_id này."
     
 
-def get_full_id_by_title(title):
-    # Tìm dòng trong DataFrame có show_id tương ứng
-    movie_row = df[df['title'] == title]
-
-    # Kiểm tra xem có tồn tại dòng nào hay không
-    if not movie_row.empty:
-        # Lấy giá trị title từ dòng tìm được
-        id = movie_row['show_id'].values[0]
-        return id
-    else:
-        return "Không tìm thấy bộ phim với show_id này."
-    
-
 
 def titleToFullInfo(title):
     # Kiểm tra xem tiêu đề có trong DataFrame không
@@ -178,18 +165,18 @@ def titleToFullInfo(title):
     if not row.empty:
         # Chuyển đổi dữ liệu thành định dạng mong muốn
         result = {
-            "show_id": int(row['show_id'].values[0]),
+           "show_id": int(row['show_id'].values[0]),
             "type": row['type'].values[0],
             "title": row['title'].values[0],
-            "director": row['director'].values[0],
-            "cast": row['cast'].values[0].encode('ascii', 'ignore').decode('ascii'),
-            "country": row['country'].values[0],
-            "date_added": row['date_added'].values[0],
-            "release_year": int(row['release_year'].values[0]),
-            "rating": row['rating'].values[0],
-            "duration": row['duration'].values[0],
-            "listed_in": row['listed_in'].values[0],
-            "description": row['description'].values[0].encode('ascii', 'ignore').decode('ascii'),
+            "director": row['director'].values[0] if not pd.isna(row['director'].values[0]) else "",
+            "cast": row['cast'].values[0].encode('ascii', 'ignore').decode('ascii') if not pd.isna(row['cast'].values[0]) else "",
+            "country": row['country'].values[0] if not pd.isna(row['country'].values[0]) else "",
+            "date_added": row['date_added'].values[0] if not pd.isna(row['date_added'].values[0]) else "",
+            "release_year": int(row['release_year'].values[0]) if not pd.isna(row['release_year'].values[0]) else 0,
+            "rating": row['rating'].values[0] if not pd.isna(row['rating'].values[0]) else "",
+            "duration": row['duration'].values[0] if not pd.isna(row['duration'].values[0]) else "",
+            "listed_in": row['listed_in'].values[0] if not pd.isna(row['listed_in'].values[0]) else "",
+            "description": row['description'].values[0].encode('ascii', 'ignore').decode('ascii') if not pd.isna(row['description'].values[0]) else "",
             "backdrop_path": "",  # Bạn có thể cung cấp đường dẫn nếu có
             "poster_path": "",  # Bạn có thể cung cấp đường dẫn nếu có
         }
