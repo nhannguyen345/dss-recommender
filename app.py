@@ -66,7 +66,12 @@ def get_show_by_id(show_id):
 @app.route("/api/<id>/recommendations")
 def get_recommend(id):
     try:
-        data = recommendation.get_recommendation(recommendation.get_title_by_show_id(int(id)))
+        global tfidf, kmeans, G  # Declare these variables as global
+        # Check if the trained data is loaded, if not, reload it
+        if tfidf is None or kmeans is None or G is None:
+            tfidf, kmeans, G = recommendation.load_trained_data()
+
+        data = recommendation.get_recommendation(id, tfidf, kmeans, G)
         return jsonify(recommendation.convert_to_desired_format(data))
     except Exception as e:
         return jsonify({"error": str(e)})

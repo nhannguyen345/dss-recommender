@@ -7,8 +7,31 @@ import numpy as np
 import math
 import time 
 import json
+import joblib
+
 
 df = pd.read_csv('./data/netflix_titles.csv')
+
+def load_trained_data():
+    try:
+        # Thử tải dữ liệu từ file nếu có
+        tfidf = joblib.load('tfidf_model.joblib')
+        kmeans = joblib.load('kmeans_model.joblib')
+        G = joblib.load('graph_model.joblib')
+
+        return tfidf, kmeans, G
+    except FileNotFoundError:
+        # Nếu không tìm thấy file, trả về None
+        return None, None, None
+
+def save_trained_data(tfidf, kmeans, G):
+    # Lưu trữ dữ liệu đã train vào file
+    joblib.dump(tfidf, 'tfidf_model.joblib')
+    joblib.dump(kmeans, 'kmeans_model.joblib')
+    joblib.dump(G, 'graph_model.joblib')
+
+# Tải dữ liệu đã train khi module được import
+tfidf, kmeans, G = load_trained_data()
 
 # convert columns "director, listed_in, cast and country" in columns that contain a real list
 # the strip function is applied on the elements
@@ -82,36 +105,44 @@ for i, rowi in df.iterrows():
         G.add_edge(snode, df['title'].loc[element], label="SIMILARITY")
 
 
-def get_recommendation(root):
-    commons_dict = {}
-    for e in G.neighbors(root):
-        for e2 in G.neighbors(e):
-            if e2 == root:
-                continue
-            if G.nodes[e2]['label'] == "MOVIE":
-                commons = commons_dict.get(e2)
-                if commons is None:
-                    commons_dict.update({e2: [e]})
-                else:
-                    commons.append(e)
-                    commons_dict.update({e2: commons})
+def get_recommendation(id, tfidf, kmeans, G):
+    try:
+        # Check if the trained data is loaded, if not, reload it
+        if tfidf is None or kmeans is None or G is None:
+            tfidf, kmeans, G = load_trained_data()
 
-    movies = []
-    weight = []
-    for key, values in commons_dict.items():
-        w = 0.0
-        for e in values:
-            w = w + 1 / math.log(G.degree(e))
-        movies.append(key)
-        weight.append(w)
+        root = get_title_by_show_id(int(id))
+        commons_dict = {}
+        for e in G.neighbors(root):
+            for e2 in G.neighbors(e):
+                if e2 == root:
+                    continue
+                if G.nodes[e2]['label'] == "MOVIE":
+                    commons = commons_dict.get(e2)
+                    if commons is None:
+                        commons_dict.update({e2: [e]})
+                    else:
+                        commons.append(e)
+                        commons_dict.update({e2: commons})
 
-    result = pd.Series(data=np.array(weight), index=movies)
-    result.sort_values(inplace=True, ascending=False)
+        movies = []
+        weight = []
+        for key, values in commons_dict.items():
+            w = 0.0
+            for e in values:
+                w = w + 1 / math.log(G.degree(e))
+            movies.append(key)
+            weight.append(w)
 
-    # Chỉ lấy 10 kết quả có trọng số cao nhất bỏ qua kết quả đầu tiên vì nó là bộ phim được chọn
-    top_10_results = result.iloc[1:11]
+        result = pd.Series(data=np.array(weight), index=movies)
+        result.sort_values(inplace=True, ascending=False)
 
-    return json.dumps(top_10_results.to_dict())
+        # Chỉ lấy 10 kết quả có trọng số cao nhất bỏ qua kết quả đầu tiên vì nó là bộ phim được chọn
+        top_10_results = result.iloc[1:11]
+
+        return json.dumps(top_10_results.to_dict())
+    except Exception as e:
+        return {"error": str(e)}
 
 
 
@@ -178,6 +209,9 @@ def convert_to_desired_format(input):
     # Tạo đối tượng kết quả cuối cùng
     final_result = {"page":1,"results": results}
     return final_result
+
+# Sau khi thực hiện train, gọi hàm save_trained_data để lưu lại dữ liệu
+save_trained_data(tfidf, kmeans, G)
 
 
 
