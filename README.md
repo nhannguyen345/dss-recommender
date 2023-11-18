@@ -36,6 +36,18 @@ GET /api/<id>/recommendations
 
 Example: GET http://your-api-url/api/70304990/recommendations
 
+```
+GET /api/netflix/<id>
+```
+
+### Parameters
+
+-   `id`: The show_id of the Netflix show.
+
+### Request
+
+Example: GET http://your-api-url/api/70304990/recommendations
+
 /////////////////////
 
 # Hướng dẫn cài đặt thư viện
